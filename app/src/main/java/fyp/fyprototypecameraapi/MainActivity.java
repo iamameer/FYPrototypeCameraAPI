@@ -1,4 +1,5 @@
 package fyp.fyprototypecameraapi;
+//http://www.vogella.com/tutorials/AndroidCamera/article.html#links-and-literature
 
 import android.app.Activity;
 import android.content.Intent;
