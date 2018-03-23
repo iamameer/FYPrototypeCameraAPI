@@ -1,10 +1,13 @@
 package fyp.fyprototypecameraapi;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -14,6 +17,7 @@ import java.util.Date;
 
 public class PhotoHandler implements PictureCallback{
     private final Context context;
+    public final static String DEBUG_TAG = "MakePhotoActivity";
 
     public PhotoHandler(Context context) {
         this.context = context;
@@ -34,7 +38,7 @@ public class PhotoHandler implements PictureCallback{
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyymmddhhmmss");
         String date = dateFormat.format(new Date());
-        String photoFile = "Picture_" + date + ".jpg";
+        String photoFile = "Picture_" /*+ date*/ + ".jpg";
 
         String filename = pictureFileDir.getPath() + File.separator + photoFile;
 
@@ -46,6 +50,8 @@ public class PhotoHandler implements PictureCallback{
             fos.close();
             Toast.makeText(context, "New Image saved:" + photoFile,
                     Toast.LENGTH_LONG).show();
+            Log.d(DEBUG_TAG,"filename: "+filename);
+            Thread.sleep(5000);
         } catch (Exception error) {
             Log.d(MainActivity.DEBUG_TAG, "File" + filename + "not saved: "
                     + error.getMessage());
