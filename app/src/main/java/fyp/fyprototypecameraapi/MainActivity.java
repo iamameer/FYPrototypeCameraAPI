@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.opencv.android.OpenCVLoader;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -34,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgGrayscale, imgTreshold, imgCanny, imgFindcontour, imgContourArea,imgResult;
 
     private boolean isTorchOn = false;
+
+    static{
+        if(OpenCVLoader.initDebug()) {
+            Log.d(DEBUG_TAG,"cv loaded");
+        }else{
+            Log.d(DEBUG_TAG,"cv failed");
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         button = (Button) findViewById(R.id.button);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Log.d(DEBUG_TAG,"btn onClick");
@@ -92,15 +102,13 @@ public class MainActivity extends AppCompatActivity {
     private void loadpic(){
        Log.d(DEBUG_TAG,"in loadpic");
 
-
-
        try{
            /*File folder = new File("sdcard/camera_app");
            if(!folder.exists()){folder.mkdir();}
 
            //filename
            File image_file = new File(folder,"cam_image.jpg");*/
-           String path = /*Environment.getExternalStorageDirectory()+*/"/sdcard/Pictures/CameraAPIDemo/Picture_.jpg";
+           String path = Environment.getExternalStorageDirectory()+"/Pictures/CameraAPIDemo/Picture_.jpg";
            Log.d(DEBUG_TAG,"ma: "+path);
            imgResult.setImageDrawable(Drawable.createFromPath(path));
         }catch (Exception e){

@@ -51,7 +51,6 @@ public class PhotoHandler implements PictureCallback{
             Toast.makeText(context, "New Image saved:" + photoFile,
                     Toast.LENGTH_LONG).show();
             Log.d(DEBUG_TAG,"filename: "+filename);
-            Thread.sleep(5000);
         } catch (Exception error) {
             Log.d(MainActivity.DEBUG_TAG, "File" + filename + "not saved: "
                     + error.getMessage());
